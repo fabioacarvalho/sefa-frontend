@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import "tailwindcss"; */
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; Remove scrollbars globais */
+    font-family: "Roboto", serif !important;
+
+    --primary-color: #1677ff;
+    --secondary-color: #399E5A;
+    --thirdary-color: #555B6E;
+    --warning-color: #F18805;
+    --danger-color: #F05365;
+}
+
+* {
+    box-sizing: border-box; /* Garante que padding e border são inclusos no tamanho */
+}
+
+
+.primary {
+    color: var(--primary-color);
+}
+.secondary {
+    color: var(--secondary-color);
+}
+.thirdary {
+    color: var(--thirdary-color);
+}
+.warning {
+    color: var(--warning-color);
+}
+.danger {
+    color: var(--danger-color);
+}
+
+.btn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-family: "Roboto", serif;
+    transition: background 0.2s;
+
+    &:hover {
+        color: #FFF;
+        background-color: #CCC;
+    }
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+}
+
+.btn-thirdary {
+    background-color: var(--thirdary-color);
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-icon {
+    background-color: transparent;
+    border: none;
+}
