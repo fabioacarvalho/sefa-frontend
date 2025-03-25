@@ -62,6 +62,10 @@ export const StyledTable = styled.table`
         padding: 0 0 0 10px;
         text-align: center;
     }
+
+    .btn-pdf {
+      cursor: pointer;
+    }
 `;
 
 export const Th = styled.th`

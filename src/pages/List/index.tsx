@@ -74,7 +74,13 @@ const FormTable = () => {
     };
 
     const handlePDF = () => {
-        console.log("PDF");
+        const downloadUrl = "https://drive.google.com/uc?export=download&id=1xJmbkQZHgw8nQvW6rkM9FdeNrYrHD2Vm";
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "Londrina.pdf"); // Nome do arquivo
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     return (
@@ -164,7 +170,7 @@ const FormTable = () => {
                                     <td>{form.cargo}</td>
                                     <td>{form.municipio}</td>
                                     <td>{form.email}</td>
-                                    <td><FaFilePdf  onClick={() => handlePDF()} /></td>
+                                    <td><FaFilePdf className="btn-pdf"  onClick={() => handlePDF()} /></td>
                                 </tr>
                             ))
                         ) : (
