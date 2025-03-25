@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Content, TableContainer, StyledTable, Box, ButtonSettings, Input, Select, FilterRow } from "./styles";
 import formService from "../../services/formService";
 import { useNavigate } from "react-router-dom";
-import { FaUpRightFromSquare } from "react-icons/fa6";
+import { FaUpRightFromSquare, FaFilePdf } from "react-icons/fa6";
+import Loading from "../../components/Loading";
+
 
 const FormTable = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false); 
+
     const [data, setData] = useState<any[]>([]);
     const [filteredData, setFilteredData] = useState<any[]>([]);
     const [municipios, setMunicipios] = useState<string[]>([]);
@@ -22,6 +26,7 @@ const FormTable = () => {
     const cargos = ["Prefeito", "Secretário de Finanças", "Contador"];
 
     useEffect(() => {
+        setIsLoading(true);
         const getMunicipios = async () => {
             try {
                 const response = await formService.getMunicipios();
@@ -31,6 +36,7 @@ const FormTable = () => {
             }
         };
         getMunicipios();
+        setIsLoading(false);
     }, []);
 
     useEffect(() => {
@@ -65,6 +71,10 @@ const FormTable = () => {
         setFilters({ id: "", nome: "", cargo: "", municipio: "" });
         setFilteredData(data);
         setIsFiltered(false);
+    };
+
+    const handlePDF = () => {
+        console.log("PDF");
     };
 
     return (
@@ -141,6 +151,7 @@ const FormTable = () => {
                             <th>Cargo</th>
                             <th>Município</th>
                             <th>Email</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,6 +164,7 @@ const FormTable = () => {
                                     <td>{form.cargo}</td>
                                     <td>{form.municipio}</td>
                                     <td>{form.email}</td>
+                                    <td><FaFilePdf  onClick={() => handlePDF()} /></td>
                                 </tr>
                             ))
                         ) : (
