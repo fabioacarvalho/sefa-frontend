@@ -177,6 +177,10 @@ const FormTable = () => {
                     </tbody>
                 </StyledTable>
             </TableContainer>
+
+            {isLoading && (
+                <Loading />
+            )}
         </Content>
     );
 };
