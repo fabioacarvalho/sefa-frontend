@@ -4,6 +4,8 @@ import { InputContainer, InputField, Label, SelectField, FormContainer } from ".
 import { useEffect, useState } from "react";
 import formService from "../../services/formService";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
+import { toast } from "react-toastify";
 
 
 type Inputs = {
@@ -16,6 +18,8 @@ type Inputs = {
 
 const Form = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); 
+
 
   const {
     register,
@@ -37,8 +41,11 @@ const Form = () => {
 
   const getMunicipios = async () => {
     try {
+      setIsLoading(true);
       const data = await formService.getMunicipios();
       setMunicipios(data.municipios || []);
+      setIsLoading(false);
+      toast.success("Municípios carregados com sucesso!");
     } catch (error) {
       console.error("Failed to get municipios:", error);
     }
@@ -104,6 +111,10 @@ const Form = () => {
         </FormContainer>
         <InputField style={{ marginTop: 15 }} type="submit" value="Cadastrar" className="btn btn-primary"/>
       </form>
+
+      {isLoading && (
+          <Loading />
+      )}
     </Content>
   );
 };
