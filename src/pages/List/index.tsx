@@ -32,12 +32,15 @@ const FormTable = () => {
     }, []);
 
     useEffect(() => {
-        setIsLoading(true);
-        formService.getAllForms().then(response => {
-            setData(response.forms || []);
-            setFilteredData(response.forms || []);
-        }).catch(error => console.error("Failed to get forms:", error));
-        setIsLoading(false);
+        const getForms = async () => {
+            setIsLoading(true);
+            await formService.getAllForms().then(response => {
+                setData(response.forms || []);
+                setFilteredData(response.forms || []);
+            }).catch(error => console.error("Failed to get forms:", error));
+            setIsLoading(false);
+        };
+        getForms();
     }, []);
 
     const handleFilterChange = (e) => {
